@@ -43,7 +43,8 @@ namespace MatchingGame
             columns = _columns;
             rows = _rows;
 
-            hudMgr.ShowInGameHUD();
+            if (hudMgr) hudMgr.ShowInGameHUD();
+            if (hudMgr) hudMgr.ShowHidePlayAgainPanel(false);
 
             NewGame();
         }
@@ -179,7 +180,7 @@ namespace MatchingGame
 
             State = GameState.Win;
             if (audioMgr) audioMgr.PlaySfx(config ? config.winSfx : null);
-            if (hudMgr) hudMgr.ShowWinDialog();
+            if (hudMgr) hudMgr.ShowHidePlayAgainPanel(true);
         }
 
         private void Lose()
@@ -187,7 +188,6 @@ namespace MatchingGame
             Debug.Log("Game Lose");
 
             State = GameState.Lose;
-            if (hudMgr) hudMgr.ShowLoseDialog();
         }
 
         public void Restart()

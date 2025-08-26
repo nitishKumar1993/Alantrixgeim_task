@@ -31,6 +31,10 @@ namespace MatchingGame
         [SerializeField]
         GameObject inGameHUD;
         [SerializeField]
+        GameObject playAgainPanel;
+        [SerializeField]
+        Button playAgainBtn;
+        [SerializeField]
         Button homeBtn;
         [SerializeField]
         TextMeshProUGUI matchText;
@@ -42,6 +46,7 @@ namespace MatchingGame
         private void Awake()
         {
             startBtn.onClick.AddListener(OnStartGameBtnClicked);
+            playAgainBtn.onClick.AddListener(OnStartGameBtnClicked);
             homeBtn.onClick.AddListener(OnHomeBtnClicked);
         }
 
@@ -83,6 +88,11 @@ namespace MatchingGame
             inGameHUD.SetActive(true);
         }
 
+        public void ShowHidePlayAgainPanel(bool show)
+        {
+            playAgainPanel.SetActive(show);
+        }
+
         public void ShowMoves(int moves)
         {
             movesText.text = string.Format(moveTextFormat, moves.ToString("D2"));
@@ -90,16 +100,6 @@ namespace MatchingGame
         public void ShowScore(int score)
         {
             matchText.text = string.Format(matchTextFormat, score.ToString("D2"));
-        }
-
-        public void ShowWinDialog()
-        {
-
-        }
-
-        public void ShowLoseDialog()
-        {
-
         }
     }
 }

@@ -16,12 +16,14 @@ namespace MatchingGame
 
         public void ResetScore()
         {
-
+            currentMatches = 0;
+            hudMgr.ShowScore(currentMatches);
         }
 
         public void ResetMoves()
         {
-
+            currentMoves = 0;
+            hudMgr.ShowMoves(currentMoves);
         }
 
         public void AddScore(int score)

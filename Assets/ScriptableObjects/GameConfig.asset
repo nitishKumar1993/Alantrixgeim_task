@@ -24,8 +24,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 85b4a6f1cd0676a41b28acce0d7574c4, type: 2}
   cardFlipDuration: 0.5
   newGameCardShowDuration: 2
-  flipSfx: {fileID: 0}
-  matchSfx: {fileID: 0}
-  mismatchSfx: {fileID: 0}
-  winSfx: {fileID: 0}
-  looseSfx: {fileID: 0}
+  flipSfx: {fileID: 8300000, guid: 8a13af0b76513e54696f6406cc31cbcf, type: 3}
+  matchSfx: {fileID: 8300000, guid: 1e43e855371bf504fbb582c9501d9d87, type: 3}
+  mismatchSfx: {fileID: 8300000, guid: 1c94b55a82f2fc449941f9fd44e5e04d, type: 3}
+  winSfx: {fileID: 8300000, guid: 87cebe9b0451e614ba0f7c681855ac18, type: 3}
+  looseSfx: {fileID: 8300000, guid: 87cebe9b0451e614ba0f7c681855ac18, type: 3}
