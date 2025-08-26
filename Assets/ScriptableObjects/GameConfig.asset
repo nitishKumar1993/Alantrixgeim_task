@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f90d05314316d341b3206664088896a, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  columns: 5
+  rows: 4
+  cardSpacing: 0
+  allCardsData:
+  - {fileID: 11400000, guid: 93dbaac05c1bf40419e1cb4859b887db, type: 2}
+  - {fileID: 11400000, guid: d91b08c09aaafbd4d82340827348cab8, type: 2}
+  - {fileID: 11400000, guid: 35d5ae185f1823c4c939186152cc6933, type: 2}
+  - {fileID: 11400000, guid: fb2b79490b5b8574fa5e080d18be8168, type: 2}
+  - {fileID: 11400000, guid: fd9dccc05b7dd1e4886080441b71f7b0, type: 2}
+  - {fileID: 11400000, guid: 5b1b9b21b1af18546ab81cbde0315c11, type: 2}
+  - {fileID: 11400000, guid: dfb5b9ea6093822429e2bec9f48f5d4e, type: 2}
+  - {fileID: 11400000, guid: 85b4a6f1cd0676a41b28acce0d7574c4, type: 2}
+  cardFlipDuration: 0.5
+  flipSfx: {fileID: 0}
+  matchSfx: {fileID: 0}
+  mismatchSfx: {fileID: 0}
+  winSfx: {fileID: 0}
+  looseSfx: {fileID: 0}

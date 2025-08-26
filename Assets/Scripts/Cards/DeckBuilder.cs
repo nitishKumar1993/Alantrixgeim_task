@@ -8,7 +8,7 @@ public static class DeckBuilder
     {
         var pool = new List<CardData>(cfg.allCardsData);
         if (pool.Count < neededPairs) Debug.LogWarning("Not enough unique cards; will reuse.");
-
+        
         var deck = new List<(string, Sprite)>();
         for (int i = 0; i < neededPairs; i++)
         {

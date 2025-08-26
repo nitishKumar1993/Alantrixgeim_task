@@ -6,13 +6,5 @@ public enum GameState { Idle, Busy, Win, Lose, Paused }
 
 public class GameManager : MonoBehaviour
 {
-    private void Awake()
-    {
-        
-    }
-
-    private void Start()
-    {
-        
-    }
+  
 }

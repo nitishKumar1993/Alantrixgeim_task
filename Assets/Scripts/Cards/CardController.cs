@@ -1,17 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardController : MonoBehaviour
 {
+    [Header("Components")]
+    [SerializeField] private Button cardBtn;
+
     public string CardId { get; private set; }
     public CardView View { get; private set; }
 
     private GameManager game;
+    public bool IsFaceUp { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        cardBtn.onClick.AddListener(OnCardClicked);
+
         View = GetComponent<CardView>();
     }
 
@@ -30,9 +34,8 @@ public class CardController : MonoBehaviour
         View.Flip(false, 0f);
     }
 
-
-    void OnMouseUpAsButton()
+    private void OnCardClicked()
     {
-      
+        View.Flip(true, 0.5f);
     }
 }
