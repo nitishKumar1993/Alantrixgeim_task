@@ -14,12 +14,17 @@ namespace MatchingGame
 
         public void SetFace(Sprite sprite) => faceRenderer.sprite = sprite;
 
+        Coroutine currentFlipCR;
+
         /// <summary>
         /// Flips the card on selection
         /// </summary>
-        public Coroutine Flip(bool faceUp, float duration)
+        public void Flip(bool faceUp, float duration)
         {
-            return StartCoroutine(Flip_CR(faceUp, duration));
+            if (this.gameObject.activeInHierarchy)
+            {
+                currentFlipCR = StartCoroutine(Flip_CR(faceUp, duration));
+            }
         }
 
         public void ShowFace()
@@ -68,6 +73,11 @@ namespace MatchingGame
                 yield return null;
             }
             show.localScale = Vector3.one;
+        }
+
+        private void OnDisable()
+        {
+            if (currentFlipCR != null) StopCoroutine(currentFlipCR);
         }
     }
 }

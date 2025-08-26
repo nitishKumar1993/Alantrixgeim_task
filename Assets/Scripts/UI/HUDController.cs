@@ -2,25 +2,85 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace MatchingGame
 {
     public class HUDController : MonoBehaviour
     {
 
+        public static UnityAction<int, int> OnGameStartAction;
+        public static UnityAction OnGoHomeAction;
+
+        [Header("Main Menu")]
+        [SerializeField]
+        GameObject mainMenuHUD;
+        [SerializeField]
+        TMP_InputField columnInputField;
+        [SerializeField]
+        TMP_InputField rowsInputField;
+        [SerializeField]
+        Button startBtn;
+        [SerializeField]
+        TextMeshProUGUI errorText;
+
+        private string emptyFieldText = "One or more fields are empty or wrong. Please check and try again";
+
+        [Header("InGame")]
+        [SerializeField]
+        GameObject inGameHUD;
+        [SerializeField]
+        Button homeBtn;
         [SerializeField]
         TextMeshProUGUI matchText;
-
         [SerializeField]
         TextMeshProUGUI movesText;
-
         string matchTextFormat = "Matches : {0}";
         string moveTextFormat = "Turns : {0}";
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
+            startBtn.onClick.AddListener(OnStartGameBtnClicked);
+            homeBtn.onClick.AddListener(OnHomeBtnClicked);
+        }
 
+        void OnStartGameBtnClicked()
+        {
+            if(string.IsNullOrEmpty(columnInputField.text) || string.IsNullOrEmpty(rowsInputField.text) )
+            {
+                errorText.text = emptyFieldText;
+                return;
+            }
+
+            int rows = int.Parse(columnInputField.text);
+            int column = int.Parse(rowsInputField.text);
+
+            if (rows <= 1 || column <= 1)
+            {
+                errorText.text = emptyFieldText;
+                return;
+            }
+
+            errorText.text = "";
+            OnGameStartAction?.Invoke(rows, column);
+        }
+
+        private void OnHomeBtnClicked()
+        {
+            OnGoHomeAction?.Invoke();
+        }
+
+        public void ShowMainMenu()
+        {
+            mainMenuHUD.SetActive(true);
+            inGameHUD.SetActive(false);
+        }
+
+        public void ShowInGameHUD()
+        {
+            mainMenuHUD.SetActive(false);
+            inGameHUD.SetActive(true);
         }
 
         public void ShowMoves(int moves)

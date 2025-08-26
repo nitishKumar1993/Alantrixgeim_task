@@ -26,9 +26,31 @@ namespace MatchingGame
 
         public GameState State { get; private set; } = GameState.Idle;
 
+        private void Awake()
+        {
+            HUDController.OnGameStartAction += OnStartNewGameAction;
+            HUDController.OnGoHomeAction += OnHomeBtnAction;
+        }
+
         void Start()
         {
+            hudMgr.ShowMainMenu();
+        }
+
+        private void OnStartNewGameAction(int _rows, int _columns)
+        {
+            columns = _columns;
+            rows = _rows;
+
+            hudMgr.ShowInGameHUD();
+
             NewGame();
+        }
+
+        private void OnHomeBtnAction()
+        {
+            hudMgr.ShowMainMenu();
+            StopAllCoroutines();
         }
 
         public void NewGame()
@@ -75,13 +97,11 @@ namespace MatchingGame
             if (State != GameState.Idle) return;
             if (card == first || card == second) return; 
 
-            // if card already matched/disabled, ignore
             var col = card.GetComponent<Collider2D>();
             if (col != null && !col.enabled) return;
 
             State = GameState.Busy;
 
-            // flip up
             card.View.Flip(true, config.cardFlipDuration);
             if (audioMgr) audioMgr.PlaySfx(config ? config.flipSfx : null);
 
@@ -92,7 +112,6 @@ namespace MatchingGame
                 return;
             }
 
-            // second selection
             second = card;
             scoreMgr.AddMove();
 
