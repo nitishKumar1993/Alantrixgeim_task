@@ -11,6 +11,7 @@ namespace MatchingGame
         [SerializeField] private Image faceRenderer;
 
         public bool IsFaceUp { get; private set; }
+        public bool IsFlipping { get; private set; }
 
         public void SetFace(Sprite sprite) => faceRenderer.sprite = sprite;
 
@@ -46,6 +47,7 @@ namespace MatchingGame
         {
             if (IsFaceUp == faceUp) yield break;
             IsFaceUp = faceUp;
+            IsFlipping = true;
 
             Transform hide = faceUp ? back : face;
             Transform show = faceUp ? face : back;
@@ -73,6 +75,7 @@ namespace MatchingGame
                 yield return null;
             }
             show.localScale = Vector3.one;
+            IsFlipping = false;
         }
 
         private void OnDisable()

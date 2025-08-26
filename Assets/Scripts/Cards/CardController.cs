@@ -23,6 +23,9 @@ namespace MatchingGame
 
         private void OnCardClicked()
         {
+            if (View.IsFaceUp || View.IsFlipping)
+                return;
+
             gameManager.OnCardSelected(this);
         }
 

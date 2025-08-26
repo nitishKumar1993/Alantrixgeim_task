@@ -117,34 +117,38 @@ namespace MatchingGame
             scoreMgr.AddMove();
 
             StartCoroutine(CheckMatch_CR());
+
+            first = null;
+            second = null;
         }
 
         private IEnumerator CheckMatch_CR()
         {
+            State = GameState.Idle;
+
+            CardController firstCard = first;
+            CardController secondCard = second;
+
             // wait until flip animation mostly done
             yield return new WaitForSeconds(config.cardFlipDuration);
 
-            bool matched = first.CardId == second.CardId;
+            bool matched = firstCard.CardId == secondCard.CardId;
 
             if (matched)
             {
                 if (audioMgr) audioMgr.PlaySfx(config ? config.matchSfx : null);
 
                 // disable both so they cannot be clicked again
-                var c1 = first.GetComponent<Collider2D>();
-                var c2 = second.GetComponent<Collider2D>();
+                var c1 = firstCard.GetComponent<Collider2D>();
+                var c2 = secondCard.GetComponent<Collider2D>();
                 if (c1) c1.enabled = false;
                 if (c2) c2.enabled = false;
 
                 int add = config.baseScorePerMatch;
                 scoreMgr.AddScore(add);
 
-                first.transform.DOShakeScale(0.5f, 0.2f);
-                second.transform.DOShakeScale(0.5f, 0.2f);
-
-                first = null;
-                second = null;
-                State = GameState.Idle;
+                firstCard.transform.DOShakeScale(0.5f, 0.2f);
+                secondCard.transform.DOShakeScale(0.5f, 0.2f);
 
                 if (scoreMgr.CurrentMatches * 2 >= cards.Count)
                 {
@@ -155,21 +159,17 @@ namespace MatchingGame
             {
                 if (audioMgr) audioMgr.PlaySfx(config ? config.mismatchSfx : null);
 
-                first.transform.DOPunchScale(Vector3.one * 0.1f, 0.5f);
-                second.transform.DOPunchScale(Vector3.one * 0.1f, 0.5f);
+                firstCard.transform.DOPunchScale(Vector3.one * 0.1f, 0.5f);
+                secondCard.transform.DOPunchScale(Vector3.one * 0.1f, 0.5f);
 
                 yield return new WaitForSeconds(0.5f);
 
                 // flip back down
-                first.View.Flip(false, config.cardFlipDuration);
-                second.View.Flip(false, config.cardFlipDuration);
+                firstCard.View.Flip(false, config.cardFlipDuration);
+                secondCard.View.Flip(false, config.cardFlipDuration);
 
                 // wait until flips complete before unlocking
                 yield return new WaitForSeconds(config.cardFlipDuration);
-
-                first = null;
-                second = null;
-                State = GameState.Idle;
             }
         }
 
