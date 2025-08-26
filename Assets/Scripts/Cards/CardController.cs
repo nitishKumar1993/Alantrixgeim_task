@@ -11,7 +11,7 @@ namespace MatchingGame
         public string CardId { get; private set; }
         public CardView View { get; private set; }
 
-        private GameManager game;
+        private GameManager gameManager;
         public bool IsFaceUp { get; private set; }
 
         private void Awake()
@@ -30,7 +30,7 @@ namespace MatchingGame
         /// <param name="back"></param>
         public void Init(GameManager gm, string id, Sprite face)
         {
-            game = gm;
+            gameManager = gm;
             CardId = id;
             View.SetFace(face);
             View.Flip(false, 0f);
@@ -39,6 +39,7 @@ namespace MatchingGame
         private void OnCardClicked()
         {
             View.Flip(true, 0.5f);
+            gameManager.OnCardSelected(this);
         }
     }
 }

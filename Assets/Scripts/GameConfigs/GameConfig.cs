@@ -5,9 +5,10 @@ namespace MatchingGame
     [CreateAssetMenu(menuName = "MatchingGame/Game Config", fileName = "GameConfig")]
     public class GameConfig : ScriptableObject
     {
+        [Header("Game data")]
+        public int baseScorePerMatch;
+
         [Header("Board")]
-        public int columns = 4;
-        public int rows = 3;
         public float cardSpacing;
 
         [Header("Cards data")]

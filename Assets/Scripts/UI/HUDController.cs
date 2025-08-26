@@ -18,6 +18,11 @@ namespace MatchingGame
 
         }
 
+        public void AddScore(int score)
+        {
+
+        }
+
         public void SetMoves(int moves)
         {
 
@@ -26,7 +31,13 @@ namespace MatchingGame
         {
 
         }
-        public void SetTimer(int moves)
+
+        public void ShowWinDialog()
+        {
+
+        }
+
+        public void ShowLoseDialog()
         {
 
         }

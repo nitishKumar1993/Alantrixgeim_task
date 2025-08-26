@@ -11,23 +11,12 @@ namespace MatchingGame
         public RectTransform gridRoot;
         public GameObject cardPrefab;
 
-        public GameManager _gm;
-        public GameConfig cfg;
-
-        public int columns, rows;
-        public float spacing;
-
-        private void Start()
-        {
-            SpawnGrid(_gm, cfg, columns, rows);
-        }
-
         public List<CardController> SpawnGrid(GameManager _gm, GameConfig _cfg, int _columns, int _rows)
         {
             var list = new List<CardController>();
             int total = _columns * _rows;
             int pairs = total / 2;
-            var deck = DeckBuilder.Build(cfg, pairs);
+            var deck = DeckBuilder.Build(_cfg, pairs);
 
             for (int r = 0, k = 0; r < _rows; r++)
             {
@@ -45,17 +34,12 @@ namespace MatchingGame
                 }
             }
 
-            gridLayout.constraintCount = columns;
+            gridLayout.constraintCount = _columns;
 
             var fitter = this.GetComponent<ResponsiveGridFitter>();
-            fitter.Apply(columns, rows);
+            fitter.Apply(_columns, _rows);
 
             return list;
-        }
-
-        float CardSpacing
-        {
-            get { return spacing; }
         }
     }
 }
