@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f90d05314316d341b3206664088896a, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  columns: 5
-  rows: 4
-  cardSpacing: 0
+  baseScorePerMatch: 1
   allCardsData:
   - {fileID: 11400000, guid: 93dbaac05c1bf40419e1cb4859b887db, type: 2}
   - {fileID: 11400000, guid: d91b08c09aaafbd4d82340827348cab8, type: 2}

@@ -12,22 +12,11 @@ namespace MatchingGame
 
         }
 
-        // Update is called once per frame
-        void Update()
+        public void ShowMoves(int moves)
         {
 
         }
-
-        public void AddScore(int score)
-        {
-
-        }
-
-        public void SetMoves(int moves)
-        {
-
-        }
-        public void SetScore(int moves)
+        public void ShowScore(int moves)
         {
 
         }

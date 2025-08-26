@@ -13,7 +13,8 @@ namespace MatchingGame
 
         [Header("Scene Refs")]
         public GridGenerator grid;
-        public HUDController hud;
+        public ScoreManager scoreMgr;
+        public HUDController hudMgr;
         public AudioManager audioMgr;
         public RectTransform boardRoot;
 
@@ -23,8 +24,6 @@ namespace MatchingGame
         private List<CardController> cards = new List<CardController>();
         private CardController first;
         private CardController second;
-        private int matches;
-        private int moves;
 
         public GameState State { get; private set; } = GameState.Idle;
 
@@ -35,19 +34,14 @@ namespace MatchingGame
 
         public void NewGame()
         {
-            // clear previous board and state
             ClearBoard();
             first = null;
             second = null;
-            matches = 0;
-            moves = 0;
 
-            // spawn grid
+            scoreMgr.ResetScore();
+            scoreMgr.ResetMoves();
+
             cards = grid.SpawnGrid(this, config, columns, rows);
-
-            // init ui and audio
-            hud.SetMoves(0);
-            hud.SetScore(0);
 
             State = GameState.Idle;
         }
@@ -89,8 +83,7 @@ namespace MatchingGame
 
             // second selection
             second = card;
-            moves++;
-            hud.SetMoves(moves);
+            scoreMgr.AddMove();
 
             StartCoroutine(CheckMatch_CR());
         }
@@ -112,17 +105,16 @@ namespace MatchingGame
                 if (c1) c1.enabled = false;
                 if (c2) c2.enabled = false;
 
-                matches++;
 
                 // scoring
                 int add = config.baseScorePerMatch;
-                hud.AddScore(add);
+                scoreMgr.AddScore(add);
 
                 first = null;
                 second = null;
                 State = GameState.Idle;
 
-                if (matches * 2 >= cards.Count)
+                if (scoreMgr.CurrentMatches * 2 >= cards.Count)
                 {
                     Win();
                 }
@@ -151,13 +143,13 @@ namespace MatchingGame
         {
             State = GameState.Win;
             if (audioMgr) audioMgr.PlaySfx(config ? config.winSfx : null);
-            if (hud) hud.ShowWinDialog();
+            if (hudMgr) hudMgr.ShowWinDialog();
         }
 
         private void Lose()
         {
             State = GameState.Lose;
-            if (hud) hud.ShowLoseDialog();
+            if (hudMgr) hudMgr.ShowLoseDialog();
         }
 
         // Optional helpers wired to UI buttons

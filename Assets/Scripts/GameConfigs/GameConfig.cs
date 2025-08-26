@@ -8,9 +8,6 @@ namespace MatchingGame
         [Header("Game data")]
         public int baseScorePerMatch;
 
-        [Header("Board")]
-        public float cardSpacing;
-
         [Header("Cards data")]
         public CardData[] allCardsData;
         public float cardFlipDuration;

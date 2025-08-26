@@ -33,12 +33,10 @@ namespace MatchingGame
             gameManager = gm;
             CardId = id;
             View.SetFace(face);
-            View.Flip(false, 0f);
         }
 
         private void OnCardClicked()
         {
-            View.Flip(true, 0.5f);
             gameManager.OnCardSelected(this);
         }
     }

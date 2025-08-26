@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace MatchingGame
+{
+    public class ScoreManager : MonoBehaviour
+    {
+        public HUDController hudMgr;
+
+        public int currentMatches = 0;
+        public int currentMoves = 0;
+
+        public int CurrentMatches { get => currentMatches;}
+
+        public void ResetScore()
+        {
+
+        }
+
+        public void ResetMoves()
+        {
+
+        }
+
+        public void AddScore(int score)
+        {
+            currentMatches += score;
+        }
+
+        public void AddMove()
+        {
+            currentMoves++;
+        }
+    }
+}
