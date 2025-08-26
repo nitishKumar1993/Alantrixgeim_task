@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -135,10 +136,11 @@ namespace MatchingGame
                 if (c1) c1.enabled = false;
                 if (c2) c2.enabled = false;
 
-
-                // scoring
                 int add = config.baseScorePerMatch;
                 scoreMgr.AddScore(add);
+
+                first.transform.DOShakeScale(0.5f, 0.2f);
+                second.transform.DOShakeScale(0.5f, 0.2f);
 
                 first = null;
                 second = null;
@@ -153,8 +155,10 @@ namespace MatchingGame
             {
                 if (audioMgr) audioMgr.PlaySfx(config ? config.mismatchSfx : null);
 
-                // small reveal delay so the player can see both faces
-                yield return new WaitForSeconds(config.cardFlipDuration);
+                first.transform.DOPunchScale(Vector3.one * 0.1f, 0.5f);
+                second.transform.DOPunchScale(Vector3.one * 0.1f, 0.5f);
+
+                yield return new WaitForSeconds(0.5f);
 
                 // flip back down
                 first.View.Flip(false, config.cardFlipDuration);
