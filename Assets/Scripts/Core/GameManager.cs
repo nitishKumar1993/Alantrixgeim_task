@@ -69,7 +69,6 @@ namespace MatchingGame
             cards.Clear();
         }
 
-        // Called from CardController.OnMouseUpAsButton (or via IPointerClickHandler in a UI version)
         public void OnCardSelected(CardController card)
         {
             if (card == null) return;
@@ -153,6 +152,8 @@ namespace MatchingGame
 
         private void Win()
         {
+            Debug.Log("Game Win");
+
             State = GameState.Win;
             if (audioMgr) audioMgr.PlaySfx(config ? config.winSfx : null);
             if (hudMgr) hudMgr.ShowWinDialog();
@@ -160,6 +161,8 @@ namespace MatchingGame
 
         private void Lose()
         {
+            Debug.Log("Game Lose");
+
             State = GameState.Lose;
             if (hudMgr) hudMgr.ShowLoseDialog();
         }

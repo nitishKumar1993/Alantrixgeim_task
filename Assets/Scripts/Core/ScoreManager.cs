@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace MatchingGame
 {
@@ -26,11 +27,13 @@ namespace MatchingGame
         public void AddScore(int score)
         {
             currentMatches += score;
+            hudMgr.ShowScore(score);
         }
 
         public void AddMove()
         {
             currentMoves++;
+            hudMgr.ShowMoves(currentMoves);
         }
     }
 }
