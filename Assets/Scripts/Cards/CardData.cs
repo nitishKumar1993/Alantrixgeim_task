@@ -1,8 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "MatchingGame/Card Data", fileName = "CardData")]
-public class CardData : ScriptableObject
+namespace MatchingGame
 {
-    public string cardId;
-    public Sprite cardSprite;
+    [CreateAssetMenu(menuName = "MatchingGame/Card Data", fileName = "CardData")]
+    public class CardData : ScriptableObject
+    {
+        public string cardId;
+        public Sprite cardSprite;
+    }
 }

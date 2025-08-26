@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MatchingGame
 {
-    public class HUDController : MonoBehaviour
+    public class AudioManager : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()
@@ -14,19 +14,6 @@ namespace MatchingGame
 
         // Update is called once per frame
         void Update()
-        {
-
-        }
-
-        public void SetMoves(int moves)
-        {
-
-        }
-        public void SetScore(int moves)
-        {
-
-        }
-        public void SetTimer(int moves)
         {
 
         }
