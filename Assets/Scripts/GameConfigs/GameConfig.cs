@@ -9,6 +9,7 @@ public class GameConfig : ScriptableObject
 
     [Header("Cards data")]
     public CardData[] allCardsData;
+    public float cardFlipDuration;
 
     [Header("SFX")]
     public AudioClip flipSfx, matchSfx, mismatchSfx, winSfx, looseSfx;
