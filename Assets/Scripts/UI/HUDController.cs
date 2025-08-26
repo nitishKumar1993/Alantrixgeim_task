@@ -10,7 +10,7 @@ namespace MatchingGame
     public class HUDController : MonoBehaviour
     {
 
-        public static UnityAction<int, int> OnGameStartAction;
+        public static UnityAction<int, int, bool> OnGameStartAction;
         public static UnityAction OnGoHomeAction;
 
         [Header("Main Menu")]
@@ -24,6 +24,8 @@ namespace MatchingGame
         Button startBtn;
         [SerializeField]
         TextMeshProUGUI errorText;
+        [SerializeField]
+        Toggle negativeScoreToggle;
 
         private string emptyFieldText = "One or more fields are empty or wrong. Please check and try again";
 
@@ -40,7 +42,7 @@ namespace MatchingGame
         TextMeshProUGUI matchText;
         [SerializeField]
         TextMeshProUGUI movesText;
-        string matchTextFormat = "Matches : {0}";
+        string matchTextFormat = "Score : {0}";
         string moveTextFormat = "Turns : {0}";
 
         private void Awake()
@@ -68,7 +70,7 @@ namespace MatchingGame
             }
 
             errorText.text = "";
-            OnGameStartAction?.Invoke(rows, column);
+            OnGameStartAction?.Invoke(rows, column, negativeScoreToggle.isOn);
         }
 
         private void OnHomeBtnClicked()

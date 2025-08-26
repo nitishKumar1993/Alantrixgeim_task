@@ -24,6 +24,7 @@ namespace MatchingGame
         private List<CardController> cards = new List<CardController>();
         private CardController first;
         private CardController second;
+        private bool negativeScoreAllowed;
 
         public GameState State { get; private set; } = GameState.Idle;
 
@@ -38,10 +39,11 @@ namespace MatchingGame
             hudMgr.ShowMainMenu();
         }
 
-        private void OnStartNewGameAction(int _rows, int _columns)
+        private void OnStartNewGameAction(int _rows, int _columns, bool _negativeScoreAllowed)
         {
             columns = _columns;
             rows = _rows;
+            negativeScoreAllowed = _negativeScoreAllowed;
 
             if (hudMgr) hudMgr.ShowInGameHUD();
             if (hudMgr) hudMgr.ShowHidePlayAgainPanel(false);
@@ -159,6 +161,12 @@ namespace MatchingGame
             else
             {
                 if (audioMgr) audioMgr.PlaySfx(config ? config.mismatchSfx : null);
+
+                if (negativeScoreAllowed)
+                {
+                    int add = config.baseScorePerMatch;
+                    scoreMgr.AddScore(-add);
+                }
 
                 firstCard.transform.DOPunchScale(Vector3.one * 0.1f, 0.5f);
                 secondCard.transform.DOPunchScale(Vector3.one * 0.1f, 0.5f);

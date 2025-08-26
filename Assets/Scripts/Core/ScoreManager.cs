@@ -10,6 +10,7 @@ namespace MatchingGame
         public HUDController hudMgr;
 
         public int currentMatches = 0;
+        public int currentScore= 0;
         public int currentMoves = 0;
 
         public int CurrentMatches { get => currentMatches;}
@@ -17,6 +18,7 @@ namespace MatchingGame
         public void ResetScore()
         {
             currentMatches = 0;
+            currentScore = 0;
             hudMgr.ShowScore(currentMatches);
         }
 
@@ -28,8 +30,15 @@ namespace MatchingGame
 
         public void AddScore(int score)
         {
-            currentMatches += score;
-            hudMgr.ShowScore(score);
+            Debug.Log(score);
+            if (score > 0)
+                currentMatches += score;
+
+            currentScore += score;
+
+            currentScore = Mathf.Max(0, currentScore);
+
+            hudMgr.ShowScore(currentScore);
         }
 
         public void AddMove()
