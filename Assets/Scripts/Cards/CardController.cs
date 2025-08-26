@@ -21,13 +21,11 @@ namespace MatchingGame
             View = GetComponent<CardView>();
         }
 
-        /// <summary>
-        /// Initialize the card with data
-        /// </summary>
-        /// <param name="gm"></param>
-        /// <param name="id"></param>
-        /// <param name="face"></param>
-        /// <param name="back"></param>
+        private void OnCardClicked()
+        {
+            gameManager.OnCardSelected(this);
+        }
+
         public void Init(GameManager gm, string id, Sprite face)
         {
             gameManager = gm;
@@ -35,9 +33,14 @@ namespace MatchingGame
             View.SetFace(face);
         }
 
-        private void OnCardClicked()
+        public void ShowFace()
         {
-            gameManager.OnCardSelected(this);
+            View.ShowFace();
+        }
+
+        public void HideFace()
+        {
+            View.HideFace();
         }
     }
 }

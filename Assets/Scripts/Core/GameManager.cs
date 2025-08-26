@@ -20,7 +20,6 @@ namespace MatchingGame
 
         public int columns, rows;
         
-        // runtime
         private List<CardController> cards = new List<CardController>();
         private CardController first;
         private CardController second;
@@ -43,6 +42,19 @@ namespace MatchingGame
 
             cards = grid.SpawnGrid(this, config, columns, rows);
 
+            State = GameState.Busy;
+
+            StartCoroutine(ShowAllCardsOnNewGame());
+        }
+
+        private IEnumerator ShowAllCardsOnNewGame()
+        {
+            cards.ForEach(obj => obj.ShowFace());
+
+            yield return new WaitForSeconds(config.newGameCardShowDuration);
+
+            cards.ForEach(obj => obj.HideFace());
+
             State = GameState.Idle;
         }
 
@@ -61,8 +73,8 @@ namespace MatchingGame
         public void OnCardSelected(CardController card)
         {
             if (card == null) return;
-            if (State != GameState.Idle) return;             // locked while animating/checking
-            if (card == first || card == second) return;     // ignore double-tap same card
+            if (State != GameState.Idle) return;
+            if (card == first || card == second) return; 
 
             // if card already matched/disabled, ignore
             var col = card.GetComponent<Collider2D>();
@@ -152,7 +164,6 @@ namespace MatchingGame
             if (hudMgr) hudMgr.ShowLoseDialog();
         }
 
-        // Optional helpers wired to UI buttons
         public void Restart()
         {
             if (State == GameState.Busy) return; // avoid reset mid-animation

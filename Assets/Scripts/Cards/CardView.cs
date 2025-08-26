@@ -22,6 +22,16 @@ namespace MatchingGame
             return StartCoroutine(Flip_CR(faceUp, duration));
         }
 
+        public void ShowFace()
+        {
+            Flip(true, 0.5f);
+        }
+
+        public void HideFace()
+        {
+            Flip(false, 0.5f);
+        }
+
         /// <summary>
         /// Animates the fliping card
         /// Flips the visible face halfway to hide and then flip then

@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dfb5b9ea6093822429e2bec9f48f5d4e, type: 2}
   - {fileID: 11400000, guid: 85b4a6f1cd0676a41b28acce0d7574c4, type: 2}
   cardFlipDuration: 0.5
+  newGameCardShowDuration: 2
   flipSfx: {fileID: 0}
   matchSfx: {fileID: 0}
   mismatchSfx: {fileID: 0}

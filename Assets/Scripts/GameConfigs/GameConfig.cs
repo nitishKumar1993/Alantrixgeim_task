@@ -11,6 +11,7 @@ namespace MatchingGame
         [Header("Cards data")]
         public CardData[] allCardsData;
         public float cardFlipDuration;
+        public float newGameCardShowDuration;
 
         [Header("SFX")]
         public AudioClip flipSfx, matchSfx, mismatchSfx, winSfx, looseSfx;
