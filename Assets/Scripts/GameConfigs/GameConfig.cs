@@ -6,6 +6,7 @@ public class GameConfig : ScriptableObject
     [Header("Board")]
     public int columns = 4;
     public int rows = 3;
+    public float cardSpacing;
 
     [Header("Cards data")]
     public CardData[] allCardsData;

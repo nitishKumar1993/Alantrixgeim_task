@@ -6,25 +6,11 @@ public class CardView : MonoBehaviour
     [SerializeField] private Transform face;
     [SerializeField] private Transform back;
     [SerializeField] private SpriteRenderer faceRenderer;
-    [SerializeField] private SpriteRenderer backRenderer;
 
     public bool IsFaceUp { get; private set; }
 
     public void SetFace(Sprite sprite) => faceRenderer.sprite = sprite;
-    public void SetBack(Sprite sprite) => backRenderer.sprite = sprite;
 
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            Flip(true, 0.5f);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Flip(false, 0.5f);
-        }
-    }
 
     /// <summary>
     /// Flips the card on selection
