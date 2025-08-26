@@ -29,6 +29,7 @@ Save/Load system to persist progress between sessions(Pending)
 Runs on:
 * Desktop (Windows/Mac)
 * Android/iOS
+* Build added in build folder
 
 🚀 Getting Started
 Open the project in Unity 2021/2022 LTS.
